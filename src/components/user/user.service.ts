@@ -7,9 +7,9 @@ import {
   CreateUserBodyDto,
   UpdateUserBodyDto,
   UserDto,
-} from '../dtos/user.dto';
+} from '../../dtos/user.dto';
 import { User, UserDocument } from 'src/schemas/user.schema';
-import { RolesService } from './roles.service';
+import { RolesService } from '../roles/roles.service';
 
 @Injectable()
 export class UserService {

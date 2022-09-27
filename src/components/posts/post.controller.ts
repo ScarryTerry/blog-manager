@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 
-import { PostsService } from '../services/post.service';
+import { PostsService } from './post.service';
 
 @ApiTags('Posts')
 @Controller('/post')

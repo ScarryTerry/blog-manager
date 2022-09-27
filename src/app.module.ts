@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { PostsModule } from './modules/post.module';
+import { PostsModule } from './components/posts/post.module';
 
-import { UserModule } from './modules/user.module';
-import { RolesModule } from './modules/roles.module';
-import { AuthModule } from './modules/auth.module';
-import { ConfigureModule } from './modules/configure.module';
-import { TokenModule } from './modules/token.module';
+import { UserModule } from './components/user/user.module';
+import { RolesModule } from './components/roles/roles.module';
+import { AuthModule } from './components/auth/auth.module';
+import { ConfigureModule } from './components/configure/configure.module';
+import { TokenModule } from './components/token/token.module';
 
 @Module({
   imports: [

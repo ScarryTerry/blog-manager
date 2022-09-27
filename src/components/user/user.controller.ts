@@ -17,8 +17,8 @@ import {
   UserDto,
 } from 'src/dtos/user.dto';
 import { User } from 'src/schemas/user.schema';
-import { UserService } from '../services/user.service';
-import { RolesService } from 'src/services/roles.service';
+import { UserService } from './user.service';
+import { RolesService } from '../roles/roles.service';
 import mongoose from 'mongoose';
 
 @ApiTags('Users')
