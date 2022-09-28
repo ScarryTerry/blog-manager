@@ -19,7 +19,6 @@ export class AuthService {
   constructor(
     private readonly jwtService: JwtService,
     private readonly userServise: UserService,
-    private readonly roleService: RolesService,
     private readonly tokenService: TokenService,
   ) {}
 
@@ -58,21 +57,5 @@ export class AuthService {
 
   private async saveToken(dto: CreateuserTokenDto): Promise<Token> {
     return this.tokenService.saveToken(dto);
-  }
-
-  private async validateToken(token: string): Promise<void> {
-    try {
-      const payload = this.jwtService.verify(token, {
-        secret: process.env.SECRET,
-      });
-      const isTokenExists = await this.tokenService.checkToken(token);
-
-      if (isTokenExists) {
-        return payload;
-      }
-      throw new UnauthorizedException();
-    } catch (err) {
-      throw new UnauthorizedException();
-    }
   }
 }

@@ -14,12 +14,12 @@ import {
   ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
+
 import { CreatePostDto, PostDto, UpdatePostBodyDto } from 'src/dtos/post.dto';
 import { Posts } from 'src/schemas/post.schema';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { Roles } from '../auth/roles-auth.decorator';
 import { RolesGuard } from '../auth/roles.guard';
-
 import { PostsService } from './post.service';
 
 @ApiTags('Posts')
