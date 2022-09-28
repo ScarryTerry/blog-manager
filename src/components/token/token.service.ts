@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+
 import { CreateuserTokenDto } from 'src/dtos/token.dto';
 import { Token, TokenDocument } from 'src/schemas/token.schema';
 
