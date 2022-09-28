@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { CreateuserTokenDto } from 'src/dtos/token.dto';
 import { Token, TokenDocument } from 'src/schemas/token.schema';
-import { UserService } from '../user/user.service';
 
 @Injectable()
 export class TokenService {
@@ -12,7 +11,7 @@ export class TokenService {
     private tokenModel: Model<TokenDocument>,
   ) {}
 
-  public async createToken(dto: CreateuserTokenDto): Promise<Token> {
+  public async saveToken(dto: CreateuserTokenDto): Promise<Token> {
     const newToken = await this.tokenModel.create(dto);
 
     return newToken;
@@ -24,6 +23,7 @@ export class TokenService {
 
   public async checkToken(token: string): Promise<Token> {
     const existingToken = await this.tokenModel.findOne({ token });
-    return existingToken;
+
+    return existingToken ? existingToken : null;
   }
 }

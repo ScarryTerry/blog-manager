@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import mongoose, { Model, mongo } from 'mongoose';
+import { Model } from 'mongoose';
 import { CreateRoleDto } from 'src/dtos/roles.dto';
 import { Roles, RolesDocument } from 'src/schemas/roles.schema';
 
@@ -16,20 +16,17 @@ export class RolesService {
     return role;
   }
 
-  public async getRoleByValue(value: string): Promise<mongoose.Types.ObjectId> {
+  public async getRoleByValue(value: string): Promise<string> {
     const role = await this.rolesModel.findOne({ role: value });
-    return role['_id'];
+    return role['role'];
   }
 
-  public async addUserToRole(
-    roleId: mongoose.Types.ObjectId,
-    userId: any,
-  ): Promise<any> {
-    const role = await this.rolesModel.findOne({ _id: roleId });
-    role['usersWithRole'].push(userId);
+  public async addUserToRole(roleName: string, userId: any): Promise<any> {
+    const usersWithRoles = await this.rolesModel.findOne({ role: roleName });
+    usersWithRoles['usersWithRole'].push(userId);
     return this.rolesModel.updateOne(
-      { _id: roleId },
-      { usersWithRole: role['usersWithRole'] },
+      { role: roleName },
+      { usersWithRole: usersWithRoles['usersWithRole'] },
     );
   }
 }

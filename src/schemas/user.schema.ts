@@ -2,6 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Roles } from './roles.schema';
+import { Posts } from './post.schema';
 
 export type UserDocument = User & Document;
 
@@ -12,13 +13,16 @@ export class User {
   email: string;
 
   @ApiProperty({
-    example: 'hash!!!!!!!!!!!!!!!!!',
+    example: '$2b$10$l0WqpbijokkbAgHPGCER9OXuOvGeVGr6x1MaIYPbPx0wjjw2Y0F5S',
     description: 'Hashed password',
   })
   @Prop({ required: true })
   hash: string;
 
-  @ApiProperty({ example: 'salt!!!!!!!!!!!!!!!!!', description: 'salt' })
+  @ApiProperty({
+    example: '$2b$10$l0WqpbijokkbAgHPGCER9O',
+    description: 'salt',
+  })
   @Prop()
   salt: string;
 
@@ -49,14 +53,26 @@ export class User {
   updatedDate: Date;
 
   @ApiProperty({
-    example: ['asdjasoig87548a9s7d89'],
-    description: 'User roles Ids',
+    example: ['user'],
+    description: 'User roles',
   })
   @Prop()
   roles: [
     {
       type: mongoose.Schema.Types.ObjectId;
       ref: Roles;
+    },
+  ];
+
+  @ApiProperty({
+    example: ['asdjasoig87548a9s7d89'],
+    description: 'User posts Ids',
+  })
+  @Prop()
+  posts: [
+    {
+      type: mongoose.Schema.Types.ObjectId;
+      ref: Posts;
     },
   ];
 }

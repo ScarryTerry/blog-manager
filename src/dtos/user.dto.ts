@@ -31,6 +31,14 @@ export class UpdateUserBodyDto {
   readonly age: number;
 }
 
+export class LoginUserDto {
+  @ApiProperty({ example: 'your.email@gmail.com', description: 'Email' })
+  readonly email: string;
+
+  @ApiProperty({ example: 'dFI587fsA', description: 'Password' })
+  readonly password: string;
+}
+
 export class UserDto {
   readonly email: string;
   readonly hash: string;
@@ -39,7 +47,8 @@ export class UserDto {
   readonly lastname: string;
   readonly age: number;
   readonly createdDate: Date;
-  readonly roles: mongoose.Types.ObjectId[];
+  readonly roles: string[];
+  readonly posts: mongoose.Types.ObjectId[];
 }
 
 export interface UpdateUserDto extends CreateUserBodyDto {

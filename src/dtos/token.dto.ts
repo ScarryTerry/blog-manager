@@ -11,7 +11,7 @@ export class CreateuserTokenDto {
   readonly token: string;
 
   @ApiProperty({
-    example: 'DATE',
+    example: '2022-09-27T11:55:53.130+00:00',
     description: 'creation date',
   })
   readonly createdDate: Date;

@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
-import { AppModule } from './app.module';
+import { AppModule } from './components/app/app.module';
 
 async function bootstrap() {
   const port = process.env.PORT || 3003;
@@ -10,6 +10,7 @@ async function bootstrap() {
     .setTitle('Blog Manager')
     .setDescription('REST API Documentation')
     .setVersion('1.0.0')
+    .addBearerAuth()
     .build();
 
   const apiDoc = SwaggerModule.createDocument(app, config);

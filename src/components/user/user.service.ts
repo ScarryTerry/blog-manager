@@ -40,9 +40,7 @@ export class UserService {
   public async createUser(dto: CreateUserBodyDto): Promise<User> {
     const salt: string = await bcrypt.genSalt(10);
     const hash: string = await bcrypt.hash(dto.password, salt);
-    const role: mongoose.Types.ObjectId = await this.roleService.getRoleByValue(
-      'user',
-    );
+    const role: string = await this.roleService.getRoleByValue('user');
 
     const newUser = await this.userModel.create({
       ...dto,
@@ -82,5 +80,12 @@ export class UserService {
 
   public async removeUserById(id: string): Promise<any> {
     return this.userModel.remove({ _id: new mongoose.Types.ObjectId(id) });
+  }
+
+  public async addPostToUser(
+    id: mongoose.Types.ObjectId,
+    posts: mongoose.Types.ObjectId[],
+  ): Promise<any> {
+    return this.userModel.updateOne({ _id: id }, { posts });
   }
 }
